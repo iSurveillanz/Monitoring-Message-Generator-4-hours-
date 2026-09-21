@@ -3,90 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>iSurveillanz Monitoring Message Generator</title>
+<title>iSurveillanz Monitoring Status Message Generator</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:#1f2937}
-.container{max-width:900px;margin:35px auto;padding:20px}
-.card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:28px;box-shadow:0 8px 24px rgba(15,23,42,.08)}
-h1{margin:0 0 7px;color:#173b67;font-size:27px}
-.subtitle{margin:0 0 24px;color:#64748b}
-.section-title{font-size:14px;font-weight:700;color:#475569;margin:18px 0 9px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
-button{font-family:inherit}
-.option{border:1px solid #dbe4ef;background:#f8fafc;padding:15px;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700;color:#1e3a5f}
-.option:hover{background:#eaf2fb}
-.option.active{background:#173b67;color:#fff;border-color:#173b67}
-.period-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:22px}
-textarea{width:100%;min-height:315px;resize:vertical;border:1px solid #cbd5e1;border-radius:10px;padding:16px;font-size:15px;line-height:1.6;font-family:Arial,Helvetica,sans-serif;background:#fbfdff;color:#1f2937}
-.actions{display:flex;gap:10px;margin-top:14px}
-.copy{flex:1;border:0;border-radius:10px;padding:14px;background:#198754;color:#fff;font-size:16px;font-weight:700;cursor:pointer}
-.copy:hover{background:#157347}
-.reset{border:1px solid #cbd5e1;border-radius:10px;padding:14px 20px;background:#fff;color:#334155;font-weight:700;cursor:pointer}
-.note{margin-top:16px;padding:12px 14px;border-radius:8px;background:#f1f5f9;color:#64748b;font-size:13px}
-@media(max-width:650px){.container{margin:10px auto;padding:10px}.card{padding:18px}.grid{grid-template-columns:1fr}.period-grid{grid-template-columns:1fr}}
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+  }
+  .container {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 24px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  }
+  .mini-header {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .mini-card {
+    background: #f8fafc;
+    border: 1px solid #dbe4ef;
+    border-radius: 10px;
+    padding: 13px 10px;
+    text-align: center;
+    transition: .2s;
+  }
+  .mini-card:hover {
+    background: #eaf2fb;
+    border-color: #8db3dc;
+    transform: translateY(-1px);
+  }
+  .mini-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: #64748b;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .mini-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #173b67;
+  }
+  h1 {
+    margin: 0 0 8px;
+    font-size: 26px;
+    color: #173b67;
+  }
+  .subtitle {
+    margin: 0 0 24px;
+    color: #64748b;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  button.slot {
+    border: 1px solid #dbe4ef;
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e3a5f;
+    transition: .2s;
+  }
+  button.slot:hover {
+    background: #eaf2fb;
+    border-color: #8db3dc;
+  }
+  button.slot.active {
+    background: #173b67;
+    color: #fff;
+    border-color: #173b67;
+  }
+  .preview-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 8px;
+  }
+  textarea {
+    width: 100%;
+    min-height: 300px;
+    resize: vertical;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+    background: #fbfdff;
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .copy {
+    flex: 1;
+    border: 0;
+    border-radius: 10px;
+    padding: 14px;
+    background: #198754;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .copy:hover { background: #157347; }
+  .reset {
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 14px 20px;
+    background: #fff;
+    color: #334155;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .note {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 13px;
+  }
+  @media (max-width: 650px) {
+    .container { margin: 15px auto; padding: 12px; }
+    .card { padding: 18px; }
+    .mini-header { grid-template-columns: repeat(2, 1fr); }
+    .grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
+
 <div class="container">
-<div class="card">
-<h1>iSurveillanz Monitoring Message Generator</h1>
-<p class="subtitle">Select the client option and review period, then copy the WhatsApp message.</p>
+  <div class="card">
+    <div class="mini-header">
+      <div class="mini-card">
+        <div class="mini-label">MINI</div>
+        <div class="mini-name">House of armuse</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-label">MINI</div>
+        <div class="mini-name">Dunkin</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-label">MINI</div>
+        <div class="mini-name">SneakerHead</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-label">MINI</div>
+        <div class="mini-name">White House</div>
+      </div>
+    </div>
+    <h1>iSurveillanz Monitoring Status</h1>
+    <p class="subtitle">Select the review period and copy the WhatsApp message.</p>
 
-<div class="section-title">Select Client</div>
-<div class="grid">
-<button class="option active" data-client="none">1. No Client</button>
-<button class="option" data-client="IWI Bhopal Matrix">2. IWI Bhopal Matrix</button>
-<button class="option" data-client="IWI Nashik Warehouse">3. IWI Nashik Warehouse</button>
-</div>
+    <div class="grid">
+      <button class="slot" data-index="0">12:00 AM – 04:00 AM</button>
+      <button class="slot" data-index="1">04:00 AM – 08:00 AM</button>
+      <button class="slot" data-index="2">08:00 AM – 12:00 PM</button>
+      <button class="slot" data-index="3">12:00 PM – 04:00 PM</button>
+      <button class="slot" data-index="4">04:00 PM – 08:00 PM</button>
+      <button class="slot" data-index="5">08:00 PM – 12:00 AM</button>
+    </div>
 
-<div class="section-title">Select Review Period</div>
-<div class="period-grid">
-<button class="option" data-index="0">12:00 AM – 04:00 AM</button>
-<button class="option" data-index="1">04:00 AM – 08:00 AM</button>
-<button class="option" data-index="2">08:00 AM – 12:00 PM</button>
-<button class="option" data-index="3">12:00 PM – 04:00 PM</button>
-<button class="option" data-index="4">04:00 PM – 08:00 PM</button>
-<button class="option" data-index="5">08:00 PM – 12:00 AM</button>
-</div>
+    <div class="preview-title">WhatsApp Message</div>
+    <textarea id="message" readonly></textarea>
 
-<div class="section-title">WhatsApp Message</div>
-<textarea id="message" readonly></textarea>
+    <div class="actions">
+      <button class="copy" id="copyBtn">📋 Copy WhatsApp Message</button>
+      <button class="reset" id="resetBtn">Reset</button>
+    </div>
 
-<div class="actions">
-<button class="copy" id="copyBtn">📋 Copy WhatsApp Message</button>
-<button class="reset" id="resetBtn">Reset</button>
-</div>
-
-<div class="note">For “No Client”, no location line is added. For the two IWI options, the selected location is added automatically.</div>
-</div>
+    <div class="note">
+      The next review starts immediately after the current review period.
+      The next update is shared 30 minutes after the review ends.
+    </div>
+  </div>
 </div>
 
 <script>
-const periods=[
-["12:00 AM to 4:00 AM","4:00 AM to 8:00 AM","8:30 AM"],
-["4:00 AM to 8:00 AM","8:00 AM to 12:00 PM","12:30 PM"],
-["8:00 AM to 12:00 PM","12:00 PM to 4:00 PM","4:30 PM"],
-["12:00 PM to 4:00 PM","4:00 PM to 8:00 PM","8:30 PM"],
-["4:00 PM to 8:00 PM","8:00 PM to 12:00 AM","12:30 AM"],
-["8:00 PM to 12:00 AM","12:00 AM to 4:00 AM","4:30 AM"]
+const periods = [
+  ["12:00 AM to 4:00 AM", "4:00 AM to 8:00 AM", "8:30 AM"],
+  ["4:00 AM to 8:00 AM", "8:00 AM to 12:00 PM", "12:30 PM"],
+  ["8:00 AM to 12:00 PM", "12:00 PM to 4:00 PM", "4:30 PM"],
+  ["12:00 PM to 4:00 PM", "4:00 PM to 8:00 PM", "8:30 PM"],
+  ["4:00 PM to 8:00 PM", "8:00 PM to 12:00 AM", "12:30 AM"],
+  ["8:00 PM to 12:00 AM", "12:00 AM to 4:00 AM", "4:30 AM"]
 ];
 
-let selectedClient="none";
-let selectedPeriod=0;
+const buttons = document.querySelectorAll(".slot");
+const messageBox = document.getElementById("message");
+const copyBtn = document.getElementById("copyBtn");
+const resetBtn = document.getElementById("resetBtn");
 
-const clientButtons=document.querySelectorAll('[data-client]');
-const periodButtons=document.querySelectorAll('[data-index]');
-const messageBox=document.getElementById("message");
-const copyBtn=document.getElementById("copyBtn");
-const resetBtn=document.getElementById("resetBtn");
+function buildMessage(index) {
+  const [lastReview, nextReview, nextUpdate] = periods[index];
 
-function buildMessage(){
-const [lastReview,nextReview,nextUpdate]=periods[selectedPeriod];
-const locationLine=selectedClient==="none" ? "" : `📍 Location: ${selectedClient}\n\n`;
-messageBox.value=`Dear Madam/Sir,
+  return `Dear Madam/Sir,
 
-${locationLine}🕘 Last Review: ${lastReview}
+🕘 Last Review: ${lastReview}
 ✅ Status: No abnormal activity was detected during this review.
 
 📌 Next Review: ${nextReview}
@@ -96,40 +230,41 @@ Thanks & Regards,
 iSurveillanz Team`;
 }
 
-clientButtons.forEach(btn=>{
-btn.addEventListener("click",()=>{
-selectedClient=btn.dataset.client;
-clientButtons.forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-buildMessage();
-});
+function selectPeriod(index) {
+  buttons.forEach((btn, i) => btn.classList.toggle("active", i === index));
+  messageBox.value = buildMessage(index);
+}
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    selectPeriod(Number(button.dataset.index));
+  });
 });
 
-periodButtons.forEach(btn=>{
-btn.addEventListener("click",()=>{
-selectedPeriod=Number(btn.dataset.index);
-periodButtons.forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-buildMessage();
-});
-});
-
-copyBtn.addEventListener("click",async()=>{
-try{await navigator.clipboard.writeText(messageBox.value)}
-catch(e){messageBox.select();document.execCommand("copy")}
-copyBtn.textContent="✅ Message Copied";
-setTimeout(()=>copyBtn.textContent="📋 Copy WhatsApp Message",1800);
-});
-
-resetBtn.addEventListener("click",()=>{
-selectedClient="none";
-selectedPeriod=0;
-clientButtons.forEach((b,i)=>b.classList.toggle("active",i===0));
-periodButtons.forEach((b,i)=>b.classList.toggle("active",i===0));
-buildMessage();
+copyBtn.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(messageBox.value);
+    copyBtn.textContent = "✅ Message Copied";
+    setTimeout(() => {
+      copyBtn.textContent = "📋 Copy WhatsApp Message";
+    }, 1800);
+  } catch (err) {
+    messageBox.select();
+    document.execCommand("copy");
+    copyBtn.textContent = "✅ Message Copied";
+    setTimeout(() => {
+      copyBtn.textContent = "📋 Copy WhatsApp Message";
+    }, 1800);
+  }
 });
 
-buildMessage();
+resetBtn.addEventListener("click", () => {
+  buttons.forEach(btn => btn.classList.remove("active"));
+  messageBox.value = "";
+});
+
+selectPeriod(3);
 </script>
+
 </body>
 </html>
