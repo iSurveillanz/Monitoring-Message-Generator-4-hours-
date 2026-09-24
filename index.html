@@ -15,6 +15,7 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: #f1f5f9;
   color: #1e293b;
@@ -22,13 +23,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Fluid Full-Width Container */
 .container {
-  max-width: 1180px;
-  margin: 32px auto;
-  padding: 0 20px;
+  width: 100%;
+  max-width: 100%;
+  margin: 18px 0;
+  padding: 0 28px;
 }
 
 .card {
+  width: 100%;
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 18px;
@@ -37,10 +41,10 @@ body {
 }
 
 /* =========================================================
-   HEADER
+   HEADER & LIVE CLOCK
 ========================================================= */
 .header {
-  padding: 24px 30px;
+  padding: 22px 32px;
   border-bottom: 1px solid #e2e8f0;
   background: #ffffff;
 }
@@ -50,12 +54,14 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  flex-wrap: nowrap;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-shrink: 0;
 }
 
 .brand-icon {
@@ -74,7 +80,7 @@ body {
 
 h1 {
   margin: 0;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 800;
   color: #0f2744;
   letter-spacing: -0.3px;
@@ -87,19 +93,94 @@ h1 {
   font-weight: 500;
 }
 
+/* Top-Center Live Clock Card */
+.live-clock-card {
+  background: #f8fbff;
+  border: 1.5px solid #c7ddf7;
+  border-radius: 12px;
+  padding: 8px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(23, 59, 103, 0.04);
+  min-width: 220px;
+  flex-shrink: 0;
+}
+
+.clock-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.clock-time {
+  font-size: 19.5px;
+  font-weight: 900;
+  color: #173b67;
+  letter-spacing: 0.3px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+}
+
+.clock-location {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2563eb;
+  margin-top: 1px;
+  letter-spacing: 0.2px;
+}
+
+/* World Time Converter Link Button */
+.world-time-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 15px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1.5px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.05);
+  flex-shrink: 0;
+}
+
+.world-time-btn:hover {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.14);
+}
+
+.world-time-btn:active {
+  transform: translateY(0);
+}
+
 .system-badge {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 7px 14px;
+  padding: 8px 16px;
   border-radius: 9999px;
   background: #ecfdf5;
   color: #047857;
   border: 1px solid #a7f3d0;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.6px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .system-badge::before {
@@ -113,10 +194,10 @@ h1 {
 }
 
 /* =========================================================
-   CLIENTS SECTION
+   CLIENTS SECTION (FULL-WIDTH 6 CARDS)
 ========================================================= */
 .section {
-  padding: 24px 30px 18px;
+  padding: 24px 32px 20px;
 }
 
 .section-title {
@@ -131,13 +212,13 @@ h1 {
 .client-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
   align-items: stretch;
 }
 
 .client {
   min-width: 0;
-  min-height: 84px;
+  min-height: 86px;
   border-radius: 13px;
   padding: 14px 10px;
   cursor: pointer;
@@ -153,7 +234,7 @@ h1 {
 }
 
 .client-name {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 800;
   line-height: 1.3;
   max-width: 100%;
@@ -227,8 +308,8 @@ h1 {
    SELECTED CLIENT BANNER
 ========================================================= */
 .selected-client {
-  margin: 0 30px 22px;
-  padding: 16px 22px;
+  margin: 0 32px 24px;
+  padding: 16px 24px;
   border-radius: 12px;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -236,11 +317,11 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
 
 .selected-name {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 800;
   color: #0f2744;
   letter-spacing: -0.2px;
@@ -249,17 +330,17 @@ h1 {
 .selected-location {
   margin-top: 3px;
   color: #64748b;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .mode-badge {
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 8px;
   background: #eaf2fb;
   color: #173b67;
   border: 1px solid #c7ddf7;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.5px;
 }
@@ -268,7 +349,7 @@ h1 {
    FYI TIME CONVERSION PANEL
 ========================================================= */
 .time-card {
-  margin: 0 30px 22px;
+  margin: 0 32px 24px;
   border: 1.5px solid #bfdbfe;
   border-radius: 14px;
   overflow: hidden;
@@ -281,11 +362,11 @@ h1 {
 }
 
 .time-header {
-  padding: 13px 20px;
+  padding: 14px 24px;
   background: #eff6ff;
   border-bottom: 1px solid #bfdbfe;
   color: #1d4ed8;
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -306,27 +387,27 @@ h1 {
 }
 
 .time-body {
-  padding: 20px;
+  padding: 22px 24px;
 }
 
 .time-grid {
   display: grid;
   grid-template-columns: 1fr 50px 1fr;
-  gap: 14px;
+  gap: 16px;
   align-items: center;
 }
 
 .time-box {
   border: 1px solid #dbeafe;
   border-radius: 12px;
-  padding: 16px;
+  padding: 18px;
   background: #ffffff;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
   text-align: center;
 }
 
 .time-label {
-  font-size: 10.5px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.7px;
   color: #64748b;
@@ -335,7 +416,7 @@ h1 {
 }
 
 .time-value {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 900;
   color: #173b67;
   letter-spacing: -0.3px;
@@ -343,7 +424,7 @@ h1 {
 
 .time-zone {
   margin-top: 4px;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
   color: #64748b;
 }
@@ -353,9 +434,9 @@ h1 {
   font-size: 20px;
   font-weight: 800;
   color: #2563eb;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
   background: #eff6ff;
   border: 1px solid #dbeafe;
   border-radius: 50%;
@@ -365,19 +446,19 @@ h1 {
 .fyi-details {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 14px;
+  gap: 14px;
+  margin-top: 16px;
 }
 
 .detail-box {
-  padding: 13px 16px;
+  padding: 14px 18px;
   border-radius: 10px;
   background: #f8fbff;
   border: 1px solid #dbeafe;
 }
 
 .detail-label {
-  font-size: 10px;
+  font-size: 10.5px;
   text-transform: uppercase;
   letter-spacing: 0.6px;
   color: #64748b;
@@ -386,40 +467,40 @@ h1 {
 }
 
 .detail-value {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 800;
   color: #0f2744;
 }
 
 .fyi-note {
-  margin-top: 14px;
-  padding: 12px 16px;
+  margin-top: 16px;
+  padding: 13px 18px;
   background: #eff6ff;
   border: 1px solid #bfdbfe;
   border-radius: 9px;
-  font-size: 12px;
+  font-size: 12.5px;
   color: #1e40af;
   line-height: 1.55;
 }
 
 /* =========================================================
-   REVIEW PERIOD
+   REVIEW PERIOD (3x2 GRID FULL-WIDTH)
 ========================================================= */
 .review-section {
-  padding: 0 30px 24px;
+  padding: 0 32px 26px;
 }
 
 .review-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .review-btn {
   border: 1.5px solid #e2e8f0;
   background: #ffffff;
   border-radius: 12px;
-  padding: 16px 18px;
+  padding: 16px 20px;
   cursor: pointer;
   text-align: left;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -427,7 +508,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 84px;
+  min-height: 94px;
   position: relative;
 }
 
@@ -447,11 +528,11 @@ h1 {
 }
 
 .review-number {
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 800;
   color: #64748b;
   letter-spacing: 0.6px;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   text-transform: uppercase;
 }
 
@@ -459,20 +540,43 @@ h1 {
   color: #93c5fd;
 }
 
+/* Main Review Time with NOW badge directly beside it */
 .review-time {
-  font-size: 14.5px;
-  font-weight: 800;
+  font-size: 15.5px;
+  font-weight: 900;
   color: #0f2744;
-  line-height: 1.3;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .review-btn.active .review-time {
   color: #ffffff;
 }
 
+/* India Reference Time (Underneath) */
+.review-subtime {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  margin-top: 5px;
+  letter-spacing: 0.1px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.review-btn.active .review-subtime {
+  color: #bfdbfe;
+}
+
+/* NOW Badge (Beside Active Time) */
 .review-now {
-  display: inline-block;
-  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 3px 8px;
   border-radius: 9999px;
   background: #dcfce7;
@@ -480,7 +584,7 @@ h1 {
   font-size: 9.5px;
   font-weight: 900;
   letter-spacing: 0.5px;
-  vertical-align: middle;
+  line-height: 1;
 }
 
 .review-btn.active .review-now {
@@ -493,38 +597,38 @@ h1 {
 ========================================================= */
 .message-section {
   border-top: 1px solid #e2e8f0;
-  padding: 24px 30px 30px;
+  padding: 26px 32px 32px;
 }
 
 .message-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .message-title {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 800;
   color: #0f2744;
   letter-spacing: -0.1px;
 }
 
 .message-status {
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 600;
   color: #64748b;
 }
 
 textarea {
   width: 100%;
-  min-height: 310px;
+  min-height: 290px;
   resize: vertical;
   border: 1.5px solid #cbd5e1;
   border-radius: 12px;
-  padding: 16px 18px;
+  padding: 18px 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.65;
   color: #1e293b;
   background: #fafcff;
@@ -543,18 +647,18 @@ textarea:focus {
 ========================================================= */
 .actions {
   display: flex;
-  gap: 12px;
-  margin-top: 14px;
+  gap: 14px;
+  margin-top: 16px;
 }
 
 .copy-btn {
   flex: 1;
   border: 0;
   border-radius: 10px;
-  padding: 14px 20px;
+  padding: 15px 22px;
   background: #16a34a;
   color: #ffffff;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 800;
   cursor: pointer;
   display: flex;
@@ -578,10 +682,10 @@ textarea:focus {
 .reset-btn {
   border: 1.5px solid #cbd5e1;
   border-radius: 10px;
-  padding: 14px 24px;
+  padding: 15px 28px;
   background: #ffffff;
   color: #475569;
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 800;
   cursor: pointer;
   transition: all 0.2s;
@@ -594,54 +698,80 @@ textarea:focus {
 }
 
 .footer-note {
-  margin-top: 16px;
-  padding: 12px 16px;
+  margin-top: 18px;
+  padding: 13px 18px;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 10px;
   color: #64748b;
-  font-size: 12px;
+  font-size: 12.5px;
   line-height: 1.55;
 }
 
 /* =========================================================
    RESPONSIVE DESIGN
 ========================================================= */
-@media (max-width: 980px) {
+@media (max-width: 1200px) {
+  .header-top {
+    flex-wrap: wrap;
+  }
+  .live-clock-card {
+    order: 2;
+  }
+  .world-time-btn {
+    order: 3;
+  }
+  .system-badge {
+    order: 4;
+  }
   .client-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-}
-
-@media (max-width: 768px) {
   .review-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .container {
-    padding: 10px;
-    margin: 12px auto;
+    padding: 0 16px;
+    margin: 12px 0;
   }
 
   .header,
   .section,
   .review-section,
   .message-section {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
   .selected-client,
   .time-card {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 18px;
+    margin-right: 18px;
   }
 
   .header-top {
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .live-clock-card {
+    order: unset;
+    width: 100%;
+  }
+
+  .world-time-btn {
+    order: unset;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .system-badge {
+    order: unset;
+    align-self: flex-start;
   }
 
   .client-grid {
@@ -682,7 +812,7 @@ textarea:focus {
 <div class="card">
 
 <!-- =======================================================
-     HEADER
+     HEADER WITH LIVE CLOCK & WORLD TIME CONVERTER
 ======================================================= -->
 <div class="header">
   <div class="header-top">
@@ -696,6 +826,22 @@ textarea:focus {
       </div>
     </div>
 
+    <!-- Live India Clock -->
+    <div class="live-clock-card">
+      <div class="clock-label">CURRENT TIME</div>
+      <div class="clock-time" id="liveIndiaTime">--:--:-- --</div>
+      <div class="clock-location">Pune, India • IST</div>
+    </div>
+
+    <!-- World Time Converter Link -->
+    <a href="https://www.worldtimebuddy.com/?pl=1&lid=30,5128581,5368361&h=30&hf=1&utm_source=chatgpt.com"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="world-time-btn"
+       title="Open World Time Buddy in a new tab">
+      🌐 World Time Converter
+    </a>
+
     <div class="system-badge">
       MONITORING ACTIVE
     </div>
@@ -703,7 +849,7 @@ textarea:focus {
 </div>
 
 <!-- =======================================================
-     CLIENTS
+     CLIENTS (6 EQUAL CARDS IN ONE ROW ON DESKTOP)
 ======================================================= -->
 <div class="section">
   <div class="section-title">
@@ -756,7 +902,7 @@ textarea:focus {
 </div>
 
 <!-- =======================================================
-     SELECTED CLIENT
+     SELECTED CLIENT BANNER
 ======================================================= -->
 <div class="selected-client">
   <div>
@@ -847,7 +993,7 @@ textarea:focus {
 </div>
 
 <!-- =======================================================
-     REVIEW PERIOD
+     REVIEW PERIOD (3x2 CARDS)
 ======================================================= -->
 <div class="review-section">
   <div class="section-title">
@@ -897,8 +1043,19 @@ textarea:focus {
 
 <script>
 /* ============================================================
-   CLIENT CONFIGURATION WITH EXACT TIME SYNC
-   Structure: [Last Review, Next Review, Next Update, India Send Time, Client Local Time, India Start Min, India End Min]
+   CLIENT CONFIGURATION (FIXED REVIEW 1 TO REVIEW 6 IDs)
+   
+   Structure:
+   [
+     0: Client Local Review Covered (Large Bold Text),
+     1: Next Review,
+     2: Next Update,
+     3: India Send Time,
+     4: Client Local Time,
+     5: Client Local Start Min (for local NOW calculation),
+     6: Client Local End Min (for local NOW calculation),
+     7: India Equivalent Time (Subtext for USA)
+   ]
 ============================================================ */
 const clients = {
   india: {
@@ -907,6 +1064,7 @@ const clients = {
     showConversion: false,
     clientLabel: "India",
     periods: [
+      /* REVIEW 1 */
       [
         "12:00 AM to 4:00 AM",
         "4:00 AM to 8:00 AM",
@@ -916,6 +1074,7 @@ const clients = {
         0,
         240
       ],
+      /* REVIEW 2 */
       [
         "4:00 AM to 8:00 AM",
         "8:00 AM to 12:00 PM",
@@ -925,6 +1084,7 @@ const clients = {
         240,
         480
       ],
+      /* REVIEW 3 */
       [
         "8:00 AM to 12:00 PM",
         "12:00 PM to 4:00 PM",
@@ -934,6 +1094,7 @@ const clients = {
         480,
         720
       ],
+      /* REVIEW 4 */
       [
         "12:00 PM to 4:00 PM",
         "4:00 PM to 8:00 PM",
@@ -943,6 +1104,7 @@ const clients = {
         720,
         960
       ],
+      /* REVIEW 5 */
       [
         "4:00 PM to 8:00 PM",
         "8:00 PM to 12:00 AM",
@@ -952,6 +1114,7 @@ const clients = {
         960,
         1200
       ],
+      /* REVIEW 6 */
       [
         "8:00 PM to 12:00 AM",
         "12:00 AM to 4:00 AM",
@@ -972,76 +1135,72 @@ const clients = {
     mode: "NEW YORK TIME",
     showConversion: true,
     clientLabel: "New York",
-    sendTimes: [
-      "4:00 PM",
-      "8:00 PM",
-      "12:00 AM",
-      "4:00 AM",
-      "8:00 AM",
-      "12:00 PM"
-    ],
-    localTimes: [
-      "6:30 AM",
-      "10:30 AM",
-      "2:30 PM",
-      "6:30 PM",
-      "10:30 PM",
-      "2:30 AM"
-    ],
     periods: [
-      [
-        "2:30 AM to 6:30 AM",
-        "6:30 AM to 10:30 AM",
-        "11:00 AM",
-        "4:00 PM",
-        "6:30 AM",
-        720,
-        960
-      ],
-      [
-        "6:30 AM to 10:30 AM",
-        "10:30 AM to 2:30 PM",
-        "3:00 PM",
-        "8:00 PM",
-        "10:30 AM",
-        960,
-        1200
-      ],
-      [
-        "10:30 AM to 2:30 PM",
-        "2:30 PM to 6:30 PM",
-        "7:00 PM",
-        "12:00 AM",
-        "2:30 PM",
-        1200,
-        1440
-      ],
+      /* REVIEW 1 */
       [
         "2:30 PM to 6:30 PM",
         "6:30 PM to 10:30 PM",
         "11:00 PM",
         "4:00 AM",
         "6:30 PM",
-        0,
-        240
+        870,
+        1110,
+        "12:00 AM to 4:00 AM"
       ],
+      /* REVIEW 2 */
       [
         "6:30 PM to 10:30 PM",
         "10:30 PM to 2:30 AM",
         "3:00 AM",
         "8:00 AM",
         "10:30 PM",
-        240,
-        480
+        1110,
+        1350,
+        "4:00 AM to 8:00 AM"
       ],
+      /* REVIEW 3 */
       [
         "10:30 PM to 2:30 AM",
         "2:30 AM to 6:30 AM",
         "7:00 AM",
         "12:00 PM",
         "2:30 AM",
-        480,
-        720
+        1350,
+        150,
+        "8:00 AM to 12:00 PM"
+      ],
+      /* REVIEW 4 */
+      [
+        "2:30 AM to 6:30 AM",
+        "6:30 AM to 10:30 AM",
+        "11:00 AM",
+        "4:00 PM",
+        "6:30 AM",
+        150,
+        390,
+        "12:00 PM to 4:00 PM"
+      ],
+      /* REVIEW 5 */
+      [
+        "6:30 AM to 10:30 AM",
+        "10:30 AM to 2:30 PM",
+        "3:00 PM",
+        "8:00 PM",
+        "10:30 AM",
+        390,
+        630,
+        "4:00 PM to 8:00 PM"
+      ],
+      /* REVIEW 6 */
+      [
+        "10:30 AM to 2:30 PM",
+        "2:30 PM to 6:30 PM",
+        "7:00 PM",
+        "12:00 AM",
+        "2:30 PM",
+        630,
+        870,
+        "8:00 PM to 12:00 AM"
       ]
     ]
   },
@@ -1054,76 +1213,72 @@ const clients = {
     mode: "LOS ANGELES TIME",
     showConversion: true,
     clientLabel: "Los Angeles",
-    sendTimes: [
-      "4:00 PM",
-      "8:00 PM",
-      "12:00 AM",
-      "4:00 AM",
-      "8:00 AM",
-      "12:00 PM"
-    ],
-    localTimes: [
-      "3:30 AM",
-      "7:30 AM",
-      "11:30 AM",
-      "3:30 PM",
-      "7:30 PM",
-      "11:30 PM"
-    ],
     periods: [
-      [
-        "11:30 PM to 3:30 AM",
-        "3:30 AM to 7:30 AM",
-        "8:00 AM",
-        "4:00 PM",
-        "3:30 AM",
-        720,
-        960
-      ],
-      [
-        "3:30 AM to 7:30 AM",
-        "7:30 AM to 11:30 AM",
-        "12:00 PM",
-        "8:00 PM",
-        "7:30 AM",
-        960,
-        1200
-      ],
-      [
-        "7:30 AM to 11:30 AM",
-        "11:30 AM to 3:30 PM",
-        "4:00 PM",
-        "12:00 AM",
-        "11:30 AM",
-        1200,
-        1440
-      ],
+      /* REVIEW 1 */
       [
         "11:30 AM to 3:30 PM",
         "3:30 PM to 7:30 PM",
         "8:00 PM",
         "4:00 AM",
         "3:30 PM",
-        0,
-        240
+        690,
+        930,
+        "12:00 AM to 4:00 AM"
       ],
+      /* REVIEW 2 */
       [
         "3:30 PM to 7:30 PM",
         "7:30 PM to 11:30 PM",
         "12:00 AM",
         "8:00 AM",
         "7:30 PM",
-        240,
-        480
+        930,
+        1170,
+        "4:00 AM to 8:00 AM"
       ],
+      /* REVIEW 3 */
       [
         "7:30 PM to 11:30 PM",
         "11:30 PM to 3:30 AM",
         "4:00 AM",
         "12:00 PM",
         "11:30 PM",
-        480,
-        720
+        1170,
+        1410,
+        "8:00 AM to 12:00 PM"
+      ],
+      /* REVIEW 4 */
+      [
+        "11:30 PM to 3:30 AM",
+        "3:30 AM to 7:30 AM",
+        "8:00 AM",
+        "4:00 PM",
+        "3:30 AM",
+        1410,
+        210,
+        "12:00 PM to 4:00 PM"
+      ],
+      /* REVIEW 5 */
+      [
+        "3:30 AM to 7:30 AM",
+        "7:30 AM to 11:30 AM",
+        "12:00 PM",
+        "8:00 PM",
+        "7:30 AM",
+        210,
+        450,
+        "4:00 PM to 8:00 PM"
+      ],
+      /* REVIEW 6 */
+      [
+        "7:30 AM to 11:30 AM",
+        "11:30 AM to 3:30 PM",
+        "4:00 PM",
+        "12:00 AM",
+        "11:30 AM",
+        450,
+        690,
+        "8:00 PM to 12:00 AM"
       ]
     ]
   }
@@ -1150,17 +1305,42 @@ const fyiNextUpdate = document.getElementById("fyiNextUpdate");
 const fyiNote = document.getElementById("fyiNote");
 const fyiHeaderText = document.getElementById("fyiHeaderText");
 const messageStatus = document.getElementById("messageStatus");
+const liveIndiaTime = document.getElementById("liveIndiaTime");
 
 let currentClient = "india";
 let currentClientName = "House of Armuse";
 let currentPeriod = 0;
 
 /* ============================================================
-   GET TIME IN INDIA (IST)
+   LIVE CLOCK (PUNE, INDIA - UPDATES EVERY SECOND)
 ============================================================ */
-function getIndiaMinutes() {
-  const parts = new Intl.DateTimeFormat("en-US", {
+function updateLiveClock() {
+  const options = {
     timeZone: "Asia/Kolkata",
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  };
+
+  const formattedTime = new Intl.DateTimeFormat("en-US", options).format(new Date());
+  if (liveIndiaTime) {
+    liveIndiaTime.textContent = formattedTime;
+  }
+}
+
+/* ============================================================
+   TIMEZONE & LOCAL TIME CONVERSION
+============================================================ */
+function getTimeZone(clientKey) {
+  if (clientKey === "dunkin") return "America/New_York";
+  if (clientKey === "sneakerhead") return "America/Los_Angeles";
+  return "Asia/Kolkata";
+}
+
+function getMinutesInTimeZone(timeZone) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
     hour: "2-digit",
     minute: "2-digit",
     hourCycle: "h23"
@@ -1172,20 +1352,21 @@ function getIndiaMinutes() {
 }
 
 /* ============================================================
-   GET CURRENT ACTIVE REVIEW PERIOD (BASED ON ACTUAL INDIA TIME)
+   AUTO REVIEW PERIOD DETECTION (BASED ON SELECTED CLIENT LOCAL TIME)
 ============================================================ */
 function getAutoPeriodIndex() {
-  const indiaMinutes = getIndiaMinutes();
-  const periods = clients[currentClient].periods;
+  const client = clients[currentClient];
+  const tz = getTimeZone(currentClient);
+  const localMinutes = getMinutesInTimeZone(tz);
 
-  for (let i = 0; i < periods.length; i++) {
-    const start = periods[i][5];
-    const end = periods[i][6];
+  for (let i = 0; i < client.periods.length; i++) {
+    const start = client.periods[i][5];
+    const end = client.periods[i][6];
 
     if (start < end) {
-      if (indiaMinutes >= start && indiaMinutes < end) return i;
+      if (localMinutes >= start && localMinutes < end) return i;
     } else {
-      if (indiaMinutes >= start || indiaMinutes < end) return i;
+      if (localMinutes >= start || localMinutes < end) return i;
     }
   }
 
@@ -1250,7 +1431,7 @@ function updateMessage() {
 }
 
 /* ============================================================
-   UPDATE NOW BADGE
+   UPDATE NOW BADGE (BESIDE ACTIVE LOCAL TIME)
 ============================================================ */
 function updateReviewNowBadge() {
   const autoPeriod = getAutoPeriodIndex();
@@ -1269,7 +1450,7 @@ function updateReviewNowBadge() {
 }
 
 /* ============================================================
-   RENDER REVIEW BUTTONS
+   RENDER REVIEW BUTTONS (3x2 FIXED REVIEW 1–6 CARDS)
 ============================================================ */
 function renderReviews() {
   const client = clients[currentClient];
@@ -1279,6 +1460,11 @@ function renderReviews() {
     const button = document.createElement("button");
     button.className = "review-btn";
 
+    // Show India reference subtime only for USA clients
+    const subtimeHtml = (client.showConversion && period[7])
+      ? `<div class="review-subtime">🇮🇳 India: ${period[7]}</div>`
+      : '';
+
     button.innerHTML = `
       <div class="review-number">
         REVIEW ${index + 1}
@@ -1286,6 +1472,7 @@ function renderReviews() {
       <div class="review-time">
         ${period[0]}
       </div>
+      ${subtimeHtml}
     `;
 
     button.addEventListener("click", () => {
@@ -1370,8 +1557,11 @@ resetBtn.addEventListener("click", () => {
 });
 
 /* ============================================================
-   INITIAL LOAD & PERIODIC CHECK
+   INITIAL LOAD & TIMERS
 ============================================================ */
+updateLiveClock();
+setInterval(updateLiveClock, 1000);
+
 currentPeriod = getAutoPeriodIndex();
 renderReviews();
 
