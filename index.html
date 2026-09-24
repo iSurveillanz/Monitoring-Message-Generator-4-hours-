@@ -126,9 +126,6 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 
 .client-grid {
@@ -167,10 +164,9 @@ h1 {
   margin-top: 5px;
   font-size: 11px;
   font-weight: 700;
-  text-transform: none;
 }
 
-/* INDIA CARDS (Soft Saffron / Cream) */
+/* INDIA CLIENTS */
 .client.india-card {
   background: #fff8ee !important;
   border: 1px solid #fbd38d !important;
@@ -188,7 +184,7 @@ h1 {
   box-shadow: 0 6px 14px -3px rgba(249, 115, 22, 0.15);
 }
 
-/* USA CARDS (Soft Ice / Light Blue) */
+/* USA CLIENTS */
 .client.usa-card {
   background: #f0f7ff !important;
   border: 1px solid #bae6fd !important;
@@ -206,7 +202,7 @@ h1 {
   box-shadow: 0 6px 14px -3px rgba(14, 165, 233, 0.15);
 }
 
-/* ACTIVE CLIENT (Dark Navy Enterprise) */
+/* ACTIVE CLIENT */
 .client.india-card.active,
 .client.usa-card.active,
 .client.active {
@@ -798,7 +794,7 @@ textarea:focus {
           🇮🇳 India Send Time
         </div>
         <div class="time-value" id="indiaTime">
-          4:30 PM
+          --
         </div>
         <div class="time-zone">
           IST
@@ -901,49 +897,75 @@ textarea:focus {
 
 <script>
 /* ============================================================
-   CLIENT CONFIGURATION
+   CLIENT CONFIGURATION WITH EXACT TIME SYNC
+   Structure: [Last Review, Next Review, Next Update, India Send Time, Client Local Time, India Start Min, India End Min]
 ============================================================ */
 const clients = {
   india: {
     location: "🇮🇳 India",
     mode: "INDIA TIME",
     showConversion: false,
+    clientLabel: "India",
     periods: [
       [
         "12:00 AM to 4:00 AM",
         "4:00 AM to 8:00 AM",
-        "8:30 AM"
+        "8:30 AM",
+        "4:00 AM",
+        "4:00 AM",
+        0,
+        240
       ],
       [
         "4:00 AM to 8:00 AM",
         "8:00 AM to 12:00 PM",
-        "12:30 PM"
+        "12:30 PM",
+        "8:00 AM",
+        "8:00 AM",
+        240,
+        480
       ],
       [
         "8:00 AM to 12:00 PM",
         "12:00 PM to 4:00 PM",
-        "4:30 PM"
+        "4:30 PM",
+        "12:00 PM",
+        "12:00 PM",
+        480,
+        720
       ],
       [
         "12:00 PM to 4:00 PM",
         "4:00 PM to 8:00 PM",
-        "8:30 PM"
+        "8:30 PM",
+        "4:00 PM",
+        "4:00 PM",
+        720,
+        960
       ],
       [
         "4:00 PM to 8:00 PM",
         "8:00 PM to 12:00 AM",
-        "12:30 AM"
+        "12:30 AM",
+        "8:00 PM",
+        "8:00 PM",
+        960,
+        1200
       ],
       [
         "8:00 PM to 12:00 AM",
         "12:00 AM to 4:00 AM",
-        "4:30 AM"
+        "4:30 AM",
+        "12:00 AM",
+        "12:00 AM",
+        1200,
+        1440
       ]
     ]
   },
 
   /* ========================================================
-     DUNKIN — NEW YORK
+     DUNKIN — NEW YORK (EDT / UTC-4)
   ======================================================== */
   dunkin: {
     location: "🇺🇸 New York, USA",
@@ -968,40 +990,64 @@ const clients = {
     ],
     periods: [
       [
+        "2:30 AM to 6:30 AM",
+        "6:30 AM to 10:30 AM",
+        "11:00 AM",
+        "4:00 PM",
+        "6:30 AM",
+        720,
+        960
+      ],
+      [
         "6:30 AM to 10:30 AM",
         "10:30 AM to 2:30 PM",
-        "3:00 PM"
+        "3:00 PM",
+        "8:00 PM",
+        "10:30 AM",
+        960,
+        1200
       ],
       [
         "10:30 AM to 2:30 PM",
         "2:30 PM to 6:30 PM",
-        "7:00 PM"
+        "7:00 PM",
+        "12:00 AM",
+        "2:30 PM",
+        1200,
+        1440
       ],
       [
         "2:30 PM to 6:30 PM",
         "6:30 PM to 10:30 PM",
-        "11:00 PM"
+        "11:00 PM",
+        "4:00 AM",
+        "6:30 PM",
+        0,
+        240
       ],
       [
         "6:30 PM to 10:30 PM",
         "10:30 PM to 2:30 AM",
-        "3:00 AM"
+        "3:00 AM",
+        "8:00 AM",
+        "10:30 PM",
+        240,
+        480
       ],
       [
         "10:30 PM to 2:30 AM",
         "2:30 AM to 6:30 AM",
-        "7:00 AM"
-      ],
-      [
-        "2:30 AM to 6:30 AM",
-        "6:30 AM to 10:30 AM",
-        "11:00 AM"
+        "7:00 AM",
+        "12:00 PM",
+        "2:30 AM",
+        480,
+        720
       ]
     ]
   },
 
   /* ========================================================
-     SNEAKERHEAD — LOS ANGELES
+     SNEAKERHEAD — LOS ANGELES (PDT / UTC-7)
   ======================================================== */
   sneakerhead: {
     location: "🇺🇸 Los Angeles, USA",
@@ -1026,50 +1072,62 @@ const clients = {
     ],
     periods: [
       [
+        "11:30 PM to 3:30 AM",
+        "3:30 AM to 7:30 AM",
+        "8:00 AM",
+        "4:00 PM",
+        "3:30 AM",
+        720,
+        960
+      ],
+      [
         "3:30 AM to 7:30 AM",
         "7:30 AM to 11:30 AM",
-        "8:00 AM"
+        "12:00 PM",
+        "8:00 PM",
+        "7:30 AM",
+        960,
+        1200
       ],
       [
         "7:30 AM to 11:30 AM",
         "11:30 AM to 3:30 PM",
-        "12:00 PM"
+        "4:00 PM",
+        "12:00 AM",
+        "11:30 AM",
+        1200,
+        1440
       ],
       [
         "11:30 AM to 3:30 PM",
         "3:30 PM to 7:30 PM",
-        "4:00 PM"
+        "8:00 PM",
+        "4:00 AM",
+        "3:30 PM",
+        0,
+        240
       ],
       [
         "3:30 PM to 7:30 PM",
         "7:30 PM to 11:30 PM",
-        "8:00 PM"
+        "12:00 AM",
+        "8:00 AM",
+        "7:30 PM",
+        240,
+        480
       ],
       [
         "7:30 PM to 11:30 PM",
         "11:30 PM to 3:30 AM",
-        "12:00 AM"
-      ],
-      [
-        "11:30 PM to 3:30 AM",
-        "3:30 AM to 7:30 AM",
-        "8:00 AM"
+        "4:00 AM",
+        "12:00 PM",
+        "11:30 PM",
+        480,
+        720
       ]
     ]
   }
 };
-
-/* ============================================================
-   INDIA SEND TIMES
-============================================================ */
-const indiaSendTimes = [
-  "4:00 PM",
-  "8:30 PM",
-  "12:30 AM",
-  "4:30 AM",
-  "8:30 AM",
-  "12:30 PM"
-];
 
 /* ============================================================
    ELEMENTS
@@ -1098,35 +1156,58 @@ let currentClientName = "House of Armuse";
 let currentPeriod = 0;
 
 /* ============================================================
-   UPDATE FYI PANEL
+   GET TIME IN INDIA (IST)
 ============================================================ */
-function getNextSendIndex() {
-  const indiaMinutes = getMinutesInTimeZone("Asia/Kolkata");
-  const sendMinutes = [16 * 60, 20 * 60, 0, 4 * 60, 8 * 60, 12 * 60];
+function getIndiaMinutes() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(new Date());
 
-  for (let i = 0; i < sendMinutes.length; i++) {
-    if (indiaMinutes < sendMinutes[i]) return i;
-  }
-
-  return 2; // next send after 12:00 PM is 12:00 AM
+  const hour = Number(parts.find(p => p.type === "hour").value);
+  const minute = Number(parts.find(p => p.type === "minute").value);
+  return hour * 60 + minute;
 }
 
+/* ============================================================
+   GET CURRENT ACTIVE REVIEW PERIOD (BASED ON ACTUAL INDIA TIME)
+============================================================ */
+function getAutoPeriodIndex() {
+  const indiaMinutes = getIndiaMinutes();
+  const periods = clients[currentClient].periods;
+
+  for (let i = 0; i < periods.length; i++) {
+    const start = periods[i][5];
+    const end = periods[i][6];
+
+    if (start < end) {
+      if (indiaMinutes >= start && indiaMinutes < end) return i;
+    } else {
+      if (indiaMinutes >= start || indiaMinutes < end) return i;
+    }
+  }
+
+  return 0;
+}
+
+/* ============================================================
+   UPDATE FYI CONVERSION PANEL
+============================================================ */
 function updateTimeCard() {
   const client = clients[currentClient];
 
-  /* INDIA CLIENTS - Hide FYI panel */
   if (!client.showConversion) {
     timeCard.classList.add("hidden");
     return;
   }
 
-  /* USA CLIENTS - FYI = NEXT INDIA SEND TIME → CLIENT LOCAL TIME */
   timeCard.classList.remove("hidden");
 
-  const sendIndex = getNextSendIndex();
-  const sendTime = client.sendTimes[sendIndex];
-  const localTime = client.localTimes[sendIndex];
-  const period = client.periods[sendIndex];
+  const period = client.periods[currentPeriod];
+  const sendTime = period[3];
+  const localTime = period[4];
 
   indiaTime.textContent = sendTime;
   clientTime.textContent = localTime;
@@ -1169,61 +1250,8 @@ function updateMessage() {
 }
 
 /* ============================================================
-   AUTO SELECT CURRENT REVIEW
+   UPDATE NOW BADGE
 ============================================================ */
-function getTimeZone(clientKey) {
-  if (clientKey === "dunkin") return "America/New_York";
-  if (clientKey === "sneakerhead") return "America/Los_Angeles";
-  return "Asia/Kolkata";
-}
-
-function getMinutesInTimeZone(timeZone) {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone,
-    hour: "2-digit",
-    minute: "2-digit",
-    hourCycle: "h23"
-  }).formatToParts(new Date());
-
-  const hour = Number(parts.find(p => p.type === "hour").value);
-  const minute = Number(parts.find(p => p.type === "minute").value);
-  return hour * 60 + minute;
-}
-
-function getAutoPeriodIndex() {
-  const minutes = getMinutesInTimeZone(getTimeZone(currentClient));
-
-  const starts = currentClient === "dunkin"
-    ? [390, 630, 870, 1110, 1350, 150]
-    : currentClient === "sneakerhead"
-      ? [210, 450, 690, 930, 1170, 1410]
-      : [0, 240, 480, 720, 960, 1200];
-
-  for (let i = 0; i < starts.length; i++) {
-    const startMin = starts[i];
-    const endMin = (startMin + 240) % 1440;
-    if (startMin < endMin) {
-      if (minutes >= startMin && minutes < endMin) return i;
-    } else {
-      if (minutes >= startMin || minutes < endMin) return i;
-    }
-  }
-
-  return 0;
-}
-
-function autoSelectCurrentReview() {
-  const autoPeriod = getAutoPeriodIndex();
-  if (autoPeriod !== currentPeriod) {
-    currentPeriod = autoPeriod;
-    selectReview();
-  } else {
-    updateTimeCard();
-    updateMessage();
-    updateReviewNowBadge();
-  }
-}
-
 function updateReviewNowBadge() {
   const autoPeriod = getAutoPeriodIndex();
   document.querySelectorAll(".review-btn").forEach((button, index) => {
@@ -1269,7 +1297,6 @@ function renderReviews() {
   });
 
   selectReview();
-  updateReviewNowBadge();
 }
 
 /* ============================================================
@@ -1295,7 +1322,6 @@ clientButtons.forEach(button => {
 
     currentClient = button.dataset.client;
     currentClientName = button.dataset.name;
-    currentPeriod = getAutoPeriodIndex(currentClient);
 
     const client = clients[currentClient];
     selectedName.textContent = currentClientName;
@@ -1344,12 +1370,14 @@ resetBtn.addEventListener("click", () => {
 });
 
 /* ============================================================
-   INITIAL LOAD
+   INITIAL LOAD & PERIODIC CHECK
 ============================================================ */
 currentPeriod = getAutoPeriodIndex();
 renderReviews();
-autoSelectCurrentReview();
-setInterval(autoSelectCurrentReview, 60000);
+
+setInterval(() => {
+  updateReviewNowBadge();
+}, 60000);
 </script>
 
 </body>
